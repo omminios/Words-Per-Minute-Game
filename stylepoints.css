@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    background-color: #121250;
+}
+
+body, .input {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS','sans-serif';
+     
+}
+
+.container {
+    position: relative;
+    margin: 6em auto;
+    background-color: #123150 ;
+    padding:1em;
+    border-radius: .5em;
+    width: 20em;
+}
+
+.word
+{
+    position: relative;
+    text-align: center;
+    font-size: 1.8em;
+    color: white;
+    width: 100%;
+}
+
+.timer{
+    font-size: 2.7em;
+    font-weight: bold;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+    color: aliceblue;
+}
+
+.topcontainer{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #123150;
+    width: 100%;
+    height: 7em;  
+}
+
+h1{
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: white;
+    padding-right: .5em;
+}
+
+.div2{
+    position: relative;
+    display: flex;
+    font-size: 2em;
+    color: #19a642;
+    margin-left: auto;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-right: 2.5%;
+    
+}
+
+.highscore{
+    color: aliceblue;
+    font-style: bold;
+    padding-left: .25em;
+    font-weight: bold;
+}
+
+.div1{
+    display: flex;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 2.5%;
+    font-size: 2em;
+    color: #19a642;
+}
+
+.score{
+    color: aliceblue;
+    font-weight: bold;
+    padding-left: .25em;
+    font-style: bold;
+}
+
+.input{
+    position: relative;
+    display: flex;
+    margin: auto;
+    width: 14em;
+    height: 1.5em;
+    font-size: 1.8em;
+    border: 3px solid black;
+    resize: none;
+    border-radius: .5em;
+}
+
+.incorrect{
+    color: red;
+}
+
+.correct{
+    color: #19a642;
+}

@@ -80,5 +80,11 @@ wordInputElement.addEventListener('input', () =>{
              
 })
 
+document.querySelector('.okay').addEventListener("click", () => {
+    document.querySelector(".container2").style.display = "none";
+    createCookie("cookie", true, null)
+})
+
+
 split_word()
 countdown()

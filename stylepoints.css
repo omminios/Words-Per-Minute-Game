@@ -109,3 +109,30 @@ h1{
 .correct{
     color: #19a642;
 }
+
+.container2{
+    background-color: rgb(0,0,0,0.5);
+    margin-top: 19.5em;
+}
+
+.subcontainer{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.subtext{
+    color: rgb(255,255,255);
+    font-size: 1.3em;
+}
+
+.okay{
+    margin-left: 2.5em;
+    padding: .5em;
+    font-size: 1.2em;
+    border-radius: .3em;
+    background-color: black;
+    color: white;
+    box-shadow: 0em 0em 0em .1em white;
+    cursor: pointer;
+}

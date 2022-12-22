@@ -39,7 +39,7 @@ function countdown() {
                     
                 })
             }
-            //postdata()
+            postdata()
         }
     }
 }
@@ -138,4 +138,4 @@ wordInputElement.addEventListener('input', () =>{
 
 split_word()
 countdown()
-//retrive_highscore()
+retrive_highscore()

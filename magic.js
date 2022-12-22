@@ -1,5 +1,6 @@
 let score = 0
 let timer = 60
+const highscore_api = 'https://rws7lufvk2.execute-api.us-east-1.amazonaws.com/Prod/highscore'
 const Word_API = 'https://random-word-api.herokuapp.com/word'
 const wordElement = document.getElementById('word')
 const wordInputElement = document.getElementById('input')
@@ -7,16 +8,43 @@ const timerElement = document.getElementById('timer')
 const scoreElement = document.getElementById('cscore')
 scoreElement.innerText = score
 
-
 function countdown() {
     timerElement.innerText = `${timer}`
-    if (timer > 0)
+    if (timer > 0){
         timer--
-    else
-        document.getElementById('input').disabled = true    
+    }
+    else {
+        document.getElementById('input').disabled = true
+        if (compare_scores() === true) {
+            let data = {
+                "ID": 0,
+                "Highscore": score
+              }
+            const postdata = async () =>{
+                await fetch(highscore_api, {
+                    method: 'PUT',
+                    headers: {
+                        "Content-Type":"application/json",
+                        "x-api-key": "CSjVYcUQHu3KKYe76UhQF9HJfFxJHE0YzomzXwme"
+                    },
+                    body: JSON.stringify(data),                    
+                })
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    const highscore = `${data}`
+                    const data_div = document.querySelector('.highscore')
+                    data_div.innerHTML = highscore
+                    
+                })
+            }
+            //postdata()
+        }
+    }
 }
 
-function get_random_word(){
+function get_random_word() {
     return fetch(Word_API)
     .then(response => {
 		if (response.ok) {
@@ -41,14 +69,44 @@ async function split_word() {
     wordInputElement.value = null
 }
 
-function score_tracker(){
+function score_tracker() {
     score = score+ 1
     console.log(score)
     scoreElement.innerText = score
 }
 
-wordInputElement.addEventListener('input', () =>{
-    setInterval(countdown, 1000)
+async function retrive_highscore() {
+    return fetch(highscore_api, {
+        headers: {
+            "Content-Type": "application/json",
+            "x-api-key": "CSjVYcUQHu3KKYe76UhQF9HJfFxJHE0YzomzXwme"
+        },
+    })
+    .then(data => data.json())
+    .then(json => {
+        const highscore = `${json}`
+        const data_div = document.querySelector('.highscore')
+        data_div.innerHTML = highscore
+    })
+}
+
+function compare_scores() {
+    const highscore = document.getElementById('highscore').innerText
+    if (score > highscore) {
+        alert("Congragulations you beat the highscore")
+        return true
+    }
+    else {
+        return false
+    }
+        
+}
+
+wordInputElement.addEventListener('input', interval_timer = () =>{
+    const ID = setInterval(countdown, 1000)
+    setTimeout( () => {
+        clearInterval(ID)
+    }, 60000 )
 }, {once: true})
 
 wordInputElement.addEventListener('input', () =>{
@@ -68,8 +126,7 @@ wordInputElement.addEventListener('input', () =>{
             characterSpan.classList.remove('correct')
             characterSpan.classList.add('incorrect')
             correct = false
-        }
-        
+        }        
     })
     if (correct)
         score = score+ 1
@@ -77,8 +134,8 @@ wordInputElement.addEventListener('input', () =>{
     
     if(correct)
         split_word()
-             
 })
 
 split_word()
 countdown()
+//retrive_highscore()

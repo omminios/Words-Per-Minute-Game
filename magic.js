@@ -25,7 +25,7 @@ function countdown() {
                     method: 'PUT',
                     headers: {
                         "Content-Type":"application/json",
-                        "x-api-key": "CSjVYcUQHu3KKYe76UhQF9HJfFxJHE0YzomzXwme"
+                        "x-api-key": "API_KEY"
                     },
                     body: JSON.stringify(data),                    
                 })
@@ -79,7 +79,7 @@ async function retrive_highscore() {
     return fetch(highscore_api, {
         headers: {
             "Content-Type": "application/json",
-            "x-api-key": "CSjVYcUQHu3KKYe76UhQF9HJfFxJHE0YzomzXwme"
+            "x-api-key": "API_KEY"
         },
     })
     .then(data => data.json())

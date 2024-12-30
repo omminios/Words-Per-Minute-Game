@@ -1,0 +1,9 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "WPMStack"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1bkel8z95mv9l"
+s3_prefix = "WPMStack"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"

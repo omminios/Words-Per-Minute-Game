@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: sam-app for WPM site
+Resources:
+  WPMAPI:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Cors:
+        AllowHeaders: '''Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'''
+        AllowOrigin: '''*'''
+        AllowMethods: '''POST, GET, PUT, OPTIONS'''
+        MaxAge: '''3600'''
+  Highscore:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: Highscore
+      AttributeDefinitions:
+      - AttributeName: ID
+        AttributeType: N
+      KeySchema:
+      - AttributeName: ID
+        KeyType: Primary Key
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+        - ServerSideEncryptionByDefault:
+            SSEAlgorithm: AES256
+      AccessControl: PublicRead
+      CorsConfiguration:
+        CorsRules:
+        - AllowedHeaders:
+          - '*'
+          AllowedMethods:
+          - GET
+          AllowedOrigins:
+          - '*'
+          Id: CORSRule1
+          MaxAge: 3600

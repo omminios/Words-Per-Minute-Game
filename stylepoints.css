@@ -1,6 +1,7 @@
 body {
     margin: 0;
     background-color: #121250;
+    
 }
 
 body, .input {
@@ -49,14 +50,15 @@ body, .input {
 h1{
     position: relative;
     display: flex;
+    margin: auto;
     align-items: center;
     color: white;
     padding-right: .5em;
 }
 
 .div2{
-    position: relative;
     display: flex;
+    align-items: center;
     font-size: 2em;
     color: #19a642;
     margin-left: auto;
@@ -65,22 +67,22 @@ h1{
     margin-right: 2.5%;
     
 }
-
-.highscore{
-    color: aliceblue;
-    font-style: bold;
-    padding-left: .25em;
-    font-weight: bold;
-}
-
 .div1{
     display: flex;
+    align-items: center;
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 2.5%;
     font-size: 2em;
     color: #19a642;
+}
+
+.highscore{
+    color: aliceblue;
+    font-style: bold;
+    padding-left: .25em;
+    font-weight: bold;
 }
 
 .score{

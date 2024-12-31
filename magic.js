@@ -1,5 +1,5 @@
 let score = 0
-let timer = 10
+let timer = 60
 const highscore_api = 'https://rws7lufvk2.execute-api.us-east-1.amazonaws.com/Prod/highscore'
 const Word_API = 'https://random-word-api.herokuapp.com/word'
 const wordElement = document.getElementById('word')
@@ -20,19 +20,26 @@ function countdown() {
                 "ID": 0,
                 "Highscore": score
               }
-            const putdata = async () =>{
+            const postdata = async () =>{
                 await fetch(highscore_api, {
                     method: 'PUT',
-                    body: JSON.stringify(data),
                     headers: {
                         "Content-Type":"application/json",
-                        "Access-Control-Allow-Origin": "*",
-                        'Access-Control-Allow-Methods': 'PUT,OPTIONS,GET'
-                    }
-                }) 
-                console.log(data)
+                        "x-api-key": "API_KEY"
+                    },
+                    body: JSON.stringify(data),                    
+                })
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    const highscore = `${data}`
+                    const data_div = document.querySelector('.highscore')
+                    data_div.innerHTML = highscore
+                    
+                })
             }
-            putdata()
+            postdata()
         }
     }
 }
@@ -68,17 +75,19 @@ function score_tracker() {
     scoreElement.innerText = score
 }
 
-function retrive_highscore() {
-    fetch(highscore_api)
-    .then(response => {
-    return response.json()
-})
-    .then(data => {
-    const highscore = `${data}`
-    const data_div = document.querySelector('.highscore')
-    data_div.innerHTML = highscore
-    return data
-})
+async function retrive_highscore() {
+    return fetch(highscore_api, {
+        headers: {
+            "Content-Type": "application/json",
+            "x-api-key": "API_KEY"
+        },
+    })
+    .then(data => data.json())
+    .then(json => {
+        const highscore = `${json}`
+        const data_div = document.querySelector('.highscore')
+        data_div.innerHTML = highscore
+    })
 }
 
 function compare_scores() {
@@ -93,12 +102,11 @@ function compare_scores() {
         
 }
 
-
 wordInputElement.addEventListener('input', interval_timer = () =>{
     const ID = setInterval(countdown, 1000)
     setTimeout( () => {
         clearInterval(ID)
-    }, 10000 )
+    }, 60000 )
 }, {once: true})
 
 
@@ -120,8 +128,7 @@ wordInputElement.addEventListener('input', () =>{
             characterSpan.classList.remove('correct')
             characterSpan.classList.add('incorrect')
             correct = false
-        }
-        
+        }        
     })
     if (correct)
         score = score+ 1
@@ -134,5 +141,3 @@ wordInputElement.addEventListener('input', () =>{
 split_word()
 countdown()
 retrive_highscore()
-
-

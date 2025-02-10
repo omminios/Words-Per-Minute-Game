@@ -1,25 +1,23 @@
 body {
     margin: 0;
     background-color: #121250;
-    
 }
 
-body, .input {
-    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS','sans-serif';
-     
+body,
+.input {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
 }
 
 .container {
     position: relative;
     margin: 6em auto;
-    background-color: #123150 ;
-    padding:1em;
+    background-color: #123150;
+    padding: 1em;
     border-radius: .5em;
     width: 20em;
 }
 
-.word
-{
+.word {
     position: relative;
     text-align: center;
     font-size: 1.8em;
@@ -27,7 +25,7 @@ body, .input {
     width: 100%;
 }
 
-.timer{
+.timer {
     font-size: 2.7em;
     font-weight: bold;
     position: relative;
@@ -37,79 +35,84 @@ body, .input {
     color: aliceblue;
 }
 
-.topcontainer{
+.topcontainer {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     background-color: #123150;
-    width: 100%;
+    width: 100%; /* Make container full width */
     height: 7em;
+    flex-wrap: wrap; /* Allow items to wrap */
+    align-items: center; /* Vertically center items */
 }
 
-.titlebar{
-    justify-content: center;
-    align-content: center;
-    margin: auto;
+.titlebar {
     color: white;
-    position: relative;
-    font-size: 2em;
+    font-size: 1.5em; /* Reduced title size */
+    text-align: center; /* Center the title */
+    flex: 1 1 100%; /* Takes full width on smaller screens */
+    margin: 0; /* Remove default margins */
+
 }
 
-.div2{
-    display: flex;
-    margin: auto;
-    align-items: center;
-    font-size: 2em;
-    color: #19a642;
-    margin-right: .75em;
-    
-       
-}
-
-.div1{
+.div2,
+.div1 {
     display: flex;
     align-items: center;
-    font-size: 2em;
+    font-size: 1.2em; /* Reduced score label size */
     color: #19a642;
-    margin-left: .75em;
+    margin: 0.5em; /* Adjusted margins */
+    flex: 1 1 auto; /* Allows elements to shrink if necessary */
+    justify-content: center; /* Center the content within each div */
 }
 
-.highscore{
+.highscore,
+.score {
     color: aliceblue;
-    font-style: bold;
     font-weight: bold;
     margin-left: .25em;
 }
 
-.highscore{
-    color: aliceblue;
-    font-style: bold;
-    padding-left: .25em;
-    font-weight: bold;
-}
-
-.score{
-    color: aliceblue;
-    font-weight: bold;
-    font-style: bold;
-    margin-left: .25em;
-}
-
-.input{
+.input {
     position: relative;
     display: flex;
     margin: auto;
     width: 14em;
     height: 1.5em;
-    font-size: 1.8em;
+    font-size: 1.2em; /* Reduced input size */
     border: 3px solid black;
     resize: none;
     border-radius: .5em;
 }
 
-.incorrect{
+.incorrect {
     color: red;
 }
 
-.correct{
+.correct {
     color: #19a642;
+}
+
+/* Media query for smaller screens (e.g., mobile) */
+@media (max-width: 400px) { /* Adjust breakpoint as needed */
+    .topcontainer {
+        flex-direction: column; /* Stack elements vertically */
+        height: auto; /* Adjust height as needed */
+        align-items: center; /* Center horizontally */
+        padding: 1em;
+    }
+
+    .titlebar {
+        font-size: 1.2em; /* Further reduce title size */
+        margin-bottom: 0.5em;
+    }
+
+    .div1, .div2 {
+        font-size: 1em;
+        margin: 0.2em;
+    }
+
+    .input {
+        font-size: 1em;
+        width: 90%; /* Make input take full width */
+    }
 }

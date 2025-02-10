@@ -25,7 +25,7 @@ function countdown() {
                     method: 'PUT',
                     headers: {
                         "Content-Type":"application/json",
-                        "x-api-key": "API_KEY"
+                        "x-api-key": API_KEY
                     },
                     body: JSON.stringify(data),                    
                 })
@@ -75,20 +75,20 @@ function score_tracker() {
     scoreElement.innerText = score
 }
 
-async function retrive_highscore() {
-    return fetch(highscore_api, {
-        headers: {
-            "Content-Type": "application/json",
-            "x-api-key": "API_KEY"
-        },
-    })
-    .then(data => data.json())
-    .then(json => {
-        const highscore = `${json}`
-        const data_div = document.querySelector('.highscore')
-        data_div.innerHTML = highscore
-    })
-}
+function retrieve_highscore() {
+    fetch('http://127.0.0.1:3000/apikey/') 
+      .then(response => response.json()) 
+      .then(json => {
+        console.log(json);
+        const highscore = `${json}`;
+        const data_div = document.querySelector('.highscore');
+        data_div.innerHTML = highscore;
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }
+
 
 function compare_scores() {
     const highscore = document.getElementById('highscore').innerText
@@ -140,4 +140,4 @@ wordInputElement.addEventListener('input', () =>{
 
 split_word()
 countdown()
-retrive_highscore()
+retrieve_highscore()
